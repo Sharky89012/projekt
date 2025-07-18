@@ -1,0 +1,470 @@
+{% load static %}
+<!doctype html>
+<html lang="de">
+    <head>
+      
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{% static 'images/pod-talk-logo3.png' %}" type="image/png">
+
+        <!-- 🔍 SEO Basis -->
+        <meta name="description" content="Entdecke bei ListCheck24 die besten Amazon-Angebote in verschiedenen Kategorien – täglich neue Deals mit echten Ersparnissen.">
+        <meta name="keywords" content="Amazon Angebote, Amazon Rabatte, Amazon Deals, Kategorieprodukte, Schnäppchen, Preisvergleich, Top-Produkte">
+        <meta name="author" content="ListCheck24 Team">
+        <meta name="robots" content="index, follow">
+    
+        <title>ListCheck24 – Beste Amazon Angebote nach Kategorie</title>
+    
+        <!-- 🌐 Open Graph für Facebook etc. -->
+        <meta property="og:title" content="Amazon Schnäppchen nach Kategorie – ListCheck24">
+        <meta property="og:description" content="Durchstöbere Top-Angebote auf Amazon in deiner Lieblingskategorie – täglich aktualisiert bei ListCheck24.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.listcheck24.de/kategorie/">
+        <meta property="og:image" content="https://www.listcheck24.de/static/images/seo-preview.png">
+    
+        <!-- 🐦 Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Top Amazon Deals nach Kategorie – ListCheck24">
+        <meta name="twitter:description" content="Spare bei Amazon mit den besten Rabatten – gefiltert nach Kategorien bei ListCheck24.">
+        <meta name="twitter:image" content="https://www.listcheck24.de/static/images/seo-preview.png">
+    
+        <!-- 🎨 CSS Dateien -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/templatemo-pod-talk.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product-search.css' %}">
+        <link rel="stylesheet" href="{% static 'css/artikel-page.css' %}">
+    </head>
+    
+<body>
+
+<main>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand me-lg-5 me-0" href="{% url 'home' %}">
+                <img src="{% static 'images/pod-talk-logo2.png' %}" class="logo-image img-fluid" alt="templatemo pod talk">
+            </a>
+
+<!-- DER REST DES HTMLS BLEIBT UNVERÄNDERT BIS AUF DIE PFADE -->
+
+
+
+            <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
+                <div class="input-group input-group-lg">    
+                    <input name="search" type="search" class="form-control" id="search" placeholder="Suche Angebote..." aria-label="Search">
+                    <button type="submit" class="form-control" id="submit">
+                        <i class="bi-search"></i>
+                    </button>
+                </div>
+            </form>
+         
+         
+         
+         
+         
+         
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle"  href="{% url 'home' %}" >Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="{% url 'about' %}">Über Uns</a>
+                    </li>
+
+                </ul>
+
+                <div class="ms-4">
+                    
+                    <a href="" data-kategorie="Allprodukt" class="btn custom-btn custom-border-btn smoothscroll" style="background-color: black;">Alle Artikeln</a>
+                
+                </div>
+
+                
+                <div class="ms-4">
+                    
+                    <a href="{% url 'datenschutz' %}" data-kategorie="Allprodukt" class="btn custom-btn custom-border-btn smoothscroll" style="background-color: black;">datenschutz</a>
+                
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+
+   
+
+
+
+
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-0" id="kategorie-titel">Kategorie</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section section-padding" id="section_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="section-title-wrap mb-5 text-center">
+                        <h4 class="section-title">Angebote aus dieser Kategorie</h4>
+                    </div>
+                </div>
+                <div id="results-container" class="row">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">   
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                <div class="subscribe-form-wrap">
+                    <h6>Bleib auf dem Laufenden – täglich neue Deals!</h6>
+
+                    <form class="custom-form subscribe-form" action="#" method="get" role="form">
+                        <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Deine E-Mail-Adresse" required>
+
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" class="form-control" id="submit">Benachrichtigen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-md-0 mb-lg-0">
+                
+
+               
+
+            
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12">
+                
+
+                <div class="site-footer-thumb mb-4 pb-2">
+                    <div class="d-flex flex-wrap">
+                        
+                    </div>
+                </div>
+                <h6 class="site-footer-title mb-3">Bald auf Social Media! Unsere Kanäle werden aktuell vorbereitet – folge uns schon bald auf Instagram, Twitter & Co.</h6>
+                <h6 class="site-footer-title mb-3">Folge uns</h6>
+
+                <ul class="social-icon">
+                    <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-instagram"></a>
+                    </li>
+
+                    <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-twitter"></a>
+                    </li>
+
+                    <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-whatsapp"></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row align-items-center">
+
+            <div class="col-lg-2 col-md-3 col-12">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/pod-talk-logo2.png' %}" class="logo-image img-fluid" alt="ListCheck24 Logo">
+                </a>
+            </div>
+
+            <div class="col-lg-7 col-md-9 col-12">
+                <ul class="site-footer-links">
+                   
+
+                   
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-12">
+                <p class="copyright-text mb-0">Copyright © 2025 ListCheck24
+                <br><br>
+                Design by: <a rel="nofollow" href="" target="_blank">Boris Atanasov</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/search_btn.js' %}"></script>
+<script src="{% static 'js/alle_prd_btn.js' %}"> </script>
+
+
+<script>
+    const kategorieTitel = document.getElementById('kategorie-titel');
+    const container = document.getElementById('results-container');
+
+    if (kategorieTitel && container) {
+        const pfad = window.location.pathname;
+        const kategorieName = decodeURIComponent(pfad.split('/').filter(Boolean).pop());
+        kategorieTitel.textContent = kategorieName;
+
+        let allItems = [];
+        let currentIndex = 0;
+        const itemsPerLoad = 8;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && currentIndex < allItems.length) {
+                    renderItems();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '300px',
+            threshold: 0.01
+        });
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}`;
+        }
+
+        function isToday(dateStr) {
+            const date = new Date(dateStr);
+            const today = new Date();
+            return date.getDate() === today.getDate() &&
+                   date.getMonth() === today.getMonth() &&
+                   date.getFullYear() === today.getFullYear();
+        }
+
+        function renderItems() {
+            const slice = allItems.slice(currentIndex, currentIndex + itemsPerLoad);
+            const fragment = document.createDocumentFragment();
+
+            slice.forEach((item, index) => {
+                const formattedDatum = formatDate(item.datum);
+                const datumClass = isToday(item.datum) ? 'datum-frisch' : 'datum-alt';
+
+                const card = document.createElement('div');
+                card.className = 'col-lg-3 col-md-6 col-12 mb-4';
+                card.innerHTML = `
+    <div class="product-card">
+        <div class="product-image-wrapper">
+            <a href="/artikel/${item.id}/">
+            <img src="${item.picture}" alt="${item.title}" class="img-fluid" loading="lazy">
+            </a>
+            </div>
+        <div class="product-title">${item.title}</div>
+        <div class="product-info mt-2">
+            <div class="product-badges mb-1">
+                <div class="text-center preis-box mb-2">${item.preis}</div>
+            </div>
+            ${item.saving ? `<div class="text-danger fw-bold mb-2">Ersparnis: ${item.saving}</div>` : ''}
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="/artikel/${item.id}/" 
+               class="btn btn-sm" 
+               style="background-color: #f2f2f2; border: 1px solid #ccc; margin: 4px 6px 0 6px; font-size: 0.85rem; padding: 6px 12px;">
+               Info
+            </a>
+            <a href="https://www.amazon.de/dp/${item.asin}?tag=sharkylinkref-21" 
+               target="_blank" 
+               class="btn btn-sm" 
+               style="background-color: #ff9900; color: white; font-size: 0.85rem; padding: 6px 12px; margin: 4px 6px 0 6px;">
+               <i class="bi bi-amazon"></i> Kaufen
+            </a>
+        </div>
+
+        <div class="text-center small mt-2 mb-0 datum-badge ${datumClass}">Gefunden am: ${formattedDatum}</div>
+    </div>
+`;
+
+
+                fragment.appendChild(card);
+
+                if ((currentIndex + index + 1) % itemsPerLoad === 0) {
+                    const trigger = document.createElement('div');
+                    trigger.className = 'lazy-trigger';
+                    trigger.style.height = '1px';
+                    fragment.appendChild(trigger);
+                    observer.observe(trigger);
+                }
+            });
+
+            container.appendChild(fragment);
+            currentIndex += itemsPerLoad;
+        }
+
+        fetch(`/api/kategorie/${encodeURIComponent(kategorieName)}/`)
+            .then(res => res.json())
+            .then(data => {
+                allItems = data.results.sort((a, b) => new Date(b.datum) - new Date(a.datum));
+                if (allItems.length === 0) {
+                    container.innerHTML = '<p class="text-center">Keine Artikel in dieser Kategorie gefunden.</p>';
+                } else {
+                    renderItems();
+                }
+            })
+            .catch(err => {
+                console.error('Fehler beim Laden der Kategorie:', err);
+            });
+    }
+
+    document.addEventListener('click', function (event) {
+        if (event.target.matches('.bi-cart')) {
+            event.preventDefault();
+            const artikelId = event.target.getAttribute('data-id');
+
+            fetch(`/api/artikel/${artikelId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Daten für Artikel:', data);
+                })
+                .catch(err => {
+                    console.error('Fehler beim Laden des Artikels:', err);
+                });
+        }
+    });
+</script>
+
+
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16983493320"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16983493320');
+</script>
+
+
+    <!--auto scroll -->    
+    <script>
+        // Scrollposition speichern beim Klick
+        document.addEventListener("click", function () {
+          localStorage.setItem("scrollYBeforeBack", window.scrollY);
+        });
+      
+        // Scrollposition nach Laden mit Delay wiederherstellen
+        window.addEventListener("load", function () {
+          const lastY = localStorage.getItem("scrollYBeforeBack");
+          if (lastY) {
+            setTimeout(function () {
+              window.scrollTo(0, parseInt(lastY));
+              localStorage.removeItem("scrollYBeforeBack");
+            }, 400); // 400ms Delay
+          }
+        });
+      </script>
+      
+
+
+
+    <!-- kontkat -->
+    <script>
+        document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('subscribe-email').value.trim();
+
+    // Vorherige Nachricht entfernen
+    const oldMessage = document.querySelector('.subscribe-message');
+    if (oldMessage) oldMessage.remove();
+
+    if (!email.includes('@')) {
+        showMessage("Bitte gib eine gültige E-Mail-Adresse ein.", false);
+        return;
+    }
+
+    fetch('/api/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: `email=${encodeURIComponent(email)}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        showMessage(data.message, data.success);
+        if (data.success) {
+            document.getElementById('subscribe-email').value = '';
+        }
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function showMessage(text, isSuccess) {
+        const msg = document.createElement('div');
+        msg.className = 'subscribe-message';
+        msg.style.marginTop = '12px';
+        msg.style.padding = '10px';
+        msg.style.borderRadius = '8px';
+        msg.style.fontWeight = '500';
+        msg.style.textAlign = 'center';
+        msg.style.transition = 'opacity 0.3s ease';
+        msg.style.opacity = '0';
+        msg.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+        msg.style.color = isSuccess ? '#155724' : '#721c24';
+        msg.innerText = isSuccess ? 'Alles klar! Wir halten dich auf dem Laufenden 📬' : text;
+
+        // Einfügen nach dem Formular
+        document.querySelector('.subscribe-form-wrap').appendChild(msg);
+
+        // Sichtbar machen
+        setTimeout(() => { msg.style.opacity = '1'; }, 100);
+
+        // Nach 6 Sekunden automatisch entfernen
+        setTimeout(() => {
+            msg.style.opacity = '0';
+            setTimeout(() => msg.remove(), 300);
+        }, 6000);
+    }
+});
+    </script>  
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,813 @@
+{% load static %}
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{% static 'images/pod-talk-logo3.png' %}" type="image/png">
+        {% load custom_filters %}
+        <title>{{ artikel.title|remove_repeats|truncatechars:25 }} ({{ artikel.asin }}) – ListCheck24</title>
+
+    
+       
+
+       
+        <meta name="description" content="{{ artikel.beschreibung|seo_description }} (ASIN: {{ artikel.asin }})">
+
+        
+        <meta name="keywords" content="{{ artikel.title }}, {{ artikel.kategorie.name }}, Amazon Deals, Rabatte, {{ artikel.saving }}, günstige Angebote, Angebote heute, Amazon Schnäppchen">
+        <meta name="author" content="ListCheck24 Team">
+        <meta name="robots" content="index, follow">
+    
+        <!-- Open Graph für Social Media -->
+        <meta property="og:title" content="{{ artikel.title }} – Top Angebot bei ListCheck24">
+        <meta property="og:description" content="{{ artikel.beschreibung|truncatechars:160 }}">
+        <meta property="og:image" content="{{ artikel.picture.url }}">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:type" content="product">
+    
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ artikel.title }}">
+        <meta name="twitter:description" content="{{ artikel.saving }} Ersparnis – Jetzt sichern bei ListCheck24!">
+        <meta name="twitter:image" content="{{ artikel.picture.url }}">
+    
+        <!-- Canonical URL -->
+        <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/templatemo-pod-talk.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product-search.css' %}">
+        <link rel="stylesheet" href="{% static 'css/artikel-page.css' %}">
+    </head>
+
+<body>
+<main>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand me-lg-5 me-0" href="{% url 'home' %}">
+                <img src="{% static 'images/pod-talk-logo2.png' %}" class="logo-image img-fluid" alt="templatemo pod talk">
+            </a>
+
+<!-- DER REST DES HTMLS BLEIBT UNVERÄNDERT BIS AUF DIE PFADE -->
+
+
+
+            <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
+                <div class="input-group input-group-lg">    
+                    <input name="search" type="search" class="form-control" id="search" placeholder="Suche Angebote..." aria-label="Search">
+                    <button type="submit" class="form-control" id="submit">
+                        <i class="bi-search"></i>
+                    </button>
+                </div>
+            </form>
+         
+         
+         
+         
+         
+         
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle"  href="{% url 'home' %}" >Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="{% url 'about' %}">Über Uns</a>
+                    </li>
+
+                </ul>
+
+                <div class="ms-4">
+                    
+                    <a href="" data-kategorie="Allprodukt" class="btn custom-btn custom-border-btn smoothscroll" style="background-color: black;">Alle Artikeln</a>
+                
+                </div>
+
+                
+                <div class="ms-4">
+                    
+                    <a href="{% url 'datenschutz' %}" data-kategorie="Allprodukt" class="btn custom-btn custom-border-btn smoothscroll" style="background-color: black;">datenschutz</a>
+                
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-lg-12 col-12">
+                    <div class="text-center mb-5 pb-2">
+                        <h1 class="text-white text-lg font-semibold">
+                            Jetzt sparen beim Kauf von {{ artikel.title|truncatechars:60 }}
+                          </h1>
+                          
+                          {% if artikel.saving %}
+                          <p style="color: white;">Beim Kauf von {{ artikel.title|truncatechars:60 }} (ASIN: {{ artikel.asin }}) sparen Sie aktuell {{ artikel.saving }} %. Jetzt zugreifen und Angebot sichern!</p>
+                          {% endif %}
+                       
+    
+                        <a href="#section_2" class="btn custom-btn smoothscroll mt-3">Jetzt entdecken</a>
+                    </div>
+                    <div class="owl-carousel owl-theme">
+
+
+
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Elektronik%20%26%20Foto/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/elektronikphoto.png' %}" class="owl-carousel-image img-fluid" alt="Elektronik & Foto" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Elektronik%20%26%20Foto/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/K%C3%BCche%2C%20Haushalt%20%26%20Wohnen/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/KucheHaushalt.png' %}" class="owl-carousel-image img-fluid" alt="Küche, Haushalt & Wohnen" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/K%C3%BCche%2C%20Haushalt%20%26%20Wohnen/" style="text-decoration: none; cursor: pointer; display: block;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Baumarkt/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/baumarkt.png' %}" class="owl-carousel-image img-fluid" alt="Baumarkt" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Baumarkt/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Sport%20%26%20Freizeit/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/freisport.png' %}" class="owl-carousel-image img-fluid" alt="Sport & Freizeit" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Sport%20%26%20Freizeit/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Auto%20%26%20Motorrad/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/automotorad.png' %}" class="owl-carousel-image img-fluid" alt="Auto & Motorrad" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Auto%20%26%20Motorrad/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+
+
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Spielzeug/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/spielzeug.png' %}" class="owl-carousel-image img-fluid" alt="Spielzeug" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Spielzeug/" style="text-decoration: none; cursor: pointer; display: block;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+
+
+
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Baby/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/baby.png' %}" class="owl-carousel-image img-fluid" alt="Baby" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Baby/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Garten/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/garten.png' %}" class="owl-carousel-image img-fluid" alt="Garten" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Garten/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Drogerie%20%26%20K%C3%B6rperpflege/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/drogen.png' %}" class="owl-carousel-image img-fluid" alt="Drogerie & Körperpflege" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Drogerie%20%26%20K%C3%B6rperpflege/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Beleuchtung/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/beleuschtung.png' %}" class="owl-carousel-image img-fluid" alt="Beleuchtung" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Beleuchtung/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/B%C3%BCrobedarf%20%26%20Schreibwaren/"  style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/BurobedarfSchreibwaren.png' %}" class="owl-carousel-image img-fluid" alt="Bürobedarf & Schreibwaren" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/B%C3%BCrobedarf%20%26%20Schreibwaren/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Computer%20%26%20Zubeh%C3%B6r/" style="all: unset; cursor: pointer;">
+                                <img src="{% static 'images/profile/computer.png' %}" class="owl-carousel-image img-fluid" alt="Computer & Zubehör" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Computer%20%26%20Zubeh%C3%B6r/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Musikinstrumente%20%26%20DJ-Equipment/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/Musikinstrumente.png' %}" class="owl-carousel-image img-fluid" alt="Musikinstrumente & DJ-Equipment" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Musikinstrumente%20%26%20DJ-Equipment/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Gewerbe%2C%20Industrie%20%26%20Wissenschaft/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/gewerbe.png' %}" class="owl-carousel-image img-fluid" alt="Gewerbe, Industrie & Wissenschaft" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Gewerbe%2C%20Industrie%20%26%20Wissenschaft/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Kosmetik/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/kosmetikk.png' %}" class="owl-carousel-image img-fluid" alt="Kosmetik" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Kosmetik/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Elektro-Gro%C3%9Fger%C3%A4te/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/Elektroo.png' %}" class="owl-carousel-image img-fluid" alt="Elektro-Großgeräte" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Elektro-Gro%C3%9Fger%C3%A4te/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Haustier/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/haustier.png' %}" class="owl-carousel-image img-fluid" alt="Haustier" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Haustier/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Lebensmittel%20%26%20Getr%C3%A4nke/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/lebensmitel.png' %}" class="owl-carousel-image img-fluid" alt="Lebensmittel & Getränke" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Lebensmittel%20%26%20Getr%C3%A4nke/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+
+                        
+                        
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Kindle-Shop/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/KindleShop.png' %}" class="owl-carousel-image img-fluid" alt="Kindle-Shop" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Kindle-Shop/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+
+                        
+
+                        <div class="owl-carousel-info-wrap item">
+                            <a href="https://listcheck24.de/kategorie/Games/" style="text-decoration: none; cursor: pointer; display: block;">
+                                <img src="{% static 'images/profile/games.png' %}" class="owl-carousel-image img-fluid" alt="Games" loading="lazy">
+                            </a>
+                            <div class="owl-carousel-info">
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item">
+                                        <a href="https://listcheck24.de/kategorie/Games/" style="all: unset; cursor: pointer;">
+                                            <img src="{% static 'images/entdecken.png' %}" class="custom-icon-button" alt="Entdecken Button">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+
+ 
+
+    <section class="about-section section-padding" id="section_2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="row">
+                    <div class="col-lg-12 col-12 text-center">
+                        <h2 class="mb-0">Produktdetails</h2>
+                        <h4><span class="font-normal">ASIN: {{ artikel.asin }}</span></h4>
+                    </div>
+                </div>
+             
+
+
+
+
+                <div id="artikel-detail-container" class="col-lg-8 col-12" data-id="{{ artikel.id }}">
+                    <div class="product-card p-4 border rounded" id="product-card-content">
+                        <div class="text-center mb-4">
+                            <img src="{{ artikel.picture.url }}" alt="{{ artikel.title }}" class="img-fluid" style="max-height: 300px;">
+                        </div>
+                        <h3 class="text-center fw-semibold">{{ artikel.title }}</h3>
+                        <div class="text-center preis-box mb-2">{{ artikel.preis }} </div>
+                        {% if artikel.saving %}
+                        <p class="text-center ersparnis-box">Ersparnis: {{ artikel.saving }}</p>
+                        {% endif %}
+                        <div class="text-center">
+                            <a href="https://www.amazon.de/dp/{{ artikel.asin }}?tag=sharkylinkref-21" target="_blank" class="amazon-btn">
+                                <i class="bi bi-amazon"></i> Jetzt auf Amazon kaufen
+                            </a>
+                        </div>
+                
+                        <div class="mt-4 lh-lg text-justify">
+                            {% for abschnitt in artikel.beschreibung.splitlines %}
+                                {% if abschnitt|length > 5 %}
+                                    <p>{{ abschnitt }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                
+                        <!-- 👇 SEO-Abschnitte -->
+                       
+                
+                        <h5 class="mt-4">Technische Details & Besonderheiten</h5>
+                        <ul>
+                            <li>ASIN: {{ artikel.asin }}</li>
+                            <li>Kategorie: {{ artikel.kategorie.name }}</li>
+                        </ul>
+                                        
+                        <p class="text-muted small">ASIN: {{ artikel.asin }}</p>
+                        <div class="text-center">
+                            <span class="datum-badge datum-frisch">Gefunden am: {{ artikel.datum|date:"d.m.Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+
+
+
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">   
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                <div class="subscribe-form-wrap">
+                    <h6>Bleib auf dem Laufenden – täglich neue Deals!</h6>
+
+                    <form class="custom-form subscribe-form" action="#" method="get" role="form">
+                        <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Deine E-Mail-Adresse" required>
+
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" class="form-control" id="submit">Benachrichtigen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-md-0 mb-lg-0">
+                
+
+               
+
+            
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12">
+                
+
+                <div class="site-footer-thumb mb-4 pb-2">
+                    <div class="d-flex flex-wrap">
+                        
+                    </div>
+                </div>
+                <h6 class="site-footer-title mb-3">Bald auf Social Media! Unsere Kanäle werden aktuell vorbereitet – folge uns schon bald auf Instagram, Twitter & Co.</h6>
+                <h6 class="site-footer-title mb-3">Folge uns</h6>
+
+                <ul class="social-icon">
+                    <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-instagram"></a>
+                    </li>
+
+                    <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-twitter"></a>
+                    </li>
+
+                    <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-whatsapp"></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row align-items-center">
+
+            <div class="col-lg-2 col-md-3 col-12">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/pod-talk-logo2.png' %}" class="logo-image img-fluid" alt="ListCheck24 Logo">
+                </a>
+            </div>
+
+            <div class="col-lg-7 col-md-9 col-12">
+                <ul class="site-footer-links">
+                   
+
+                   
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-12">
+                <p class="copyright-text mb-0">Copyright © 2025 ListCheck24
+                <br><br>
+                Design by: <a rel="nofollow" href="" target="_blank">Boris Atanasov</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<!-- <script src="{% static 'js/artikel-details.js' %}"></script> -->
+<script src="{% static 'js/search_btn.js' %}"></script>
+<script src="{% static 'js/alle_prd_btn.js' %}"> </script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16983493320"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16983493320');
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.kategorie-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const kategorie = this.dataset.kategorie;
+                if (kategorie) {
+                    // Leitet zur Kategorie-Seite weiter
+                    window.location.href = `/kategorie/${encodeURIComponent(kategorie)}/`;
+                }
+            });
+        });
+    });
+    </script>
+
+    <!--auto scroll -->    
+  
+
+
+    <!-- kontkat -->
+    <script>
+        document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('subscribe-email').value.trim();
+
+    // Vorherige Nachricht entfernen
+    const oldMessage = document.querySelector('.subscribe-message');
+    if (oldMessage) oldMessage.remove();
+
+    if (!email.includes('@')) {
+        showMessage("Bitte gib eine gültige E-Mail-Adresse ein.", false);
+        return;
+    }
+
+    fetch('/api/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: `email=${encodeURIComponent(email)}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        showMessage(data.message, data.success);
+        if (data.success) {
+            document.getElementById('subscribe-email').value = '';
+        }
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function showMessage(text, isSuccess) {
+        const msg = document.createElement('div');
+        msg.className = 'subscribe-message';
+        msg.style.marginTop = '12px';
+        msg.style.padding = '10px';
+        msg.style.borderRadius = '8px';
+        msg.style.fontWeight = '500';
+        msg.style.textAlign = 'center';
+        msg.style.transition = 'opacity 0.3s ease';
+        msg.style.opacity = '0';
+        msg.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+        msg.style.color = isSuccess ? '#155724' : '#721c24';
+        msg.innerText = isSuccess ? 'Alles klar! Wir halten dich auf dem Laufenden 📬' : text;
+
+        // Einfügen nach dem Formular
+        document.querySelector('.subscribe-form-wrap').appendChild(msg);
+
+        // Sichtbar machen
+        setTimeout(() => { msg.style.opacity = '1'; }, 100);
+
+        // Nach 6 Sekunden automatisch entfernen
+        setTimeout(() => {
+            msg.style.opacity = '0';
+            setTimeout(() => msg.remove(), 300);
+        }, 6000);
+    }
+});
+    </script>  
+
+
+</body>
+</html>

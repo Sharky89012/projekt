@@ -1,0 +1,54 @@
+.preis-box {
+    font-size: 1.5rem;
+    color: #28a745;
+    font-weight: 600;
+}
+.ersparnis-box {
+    font-size: 1.1rem;
+    background: linear-gradient(to right, #ff4e50, #f9d423);
+    color: white;
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.datum-badge {
+    font-size: 1.05rem;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 10px;
+}
+.datum-frisch {
+    background-color: #28a745;
+    color: white;
+}
+.datum-alt {
+    background-color: #ffc107;
+    color: black;
+}
+.datum-hinweis {
+    font-size: 0.85rem;
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+}
+.amazon-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: linear-gradient(to right, #ff9900, #ff6600);
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.amazon-btn:hover {
+    background: linear-gradient(to right, #e68a00, #cc5200);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
